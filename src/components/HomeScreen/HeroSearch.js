@@ -39,7 +39,7 @@ const HeroSearch = () => {
                 variant="contained"
                 size="large"
                 href="/premium-themes/onepirate/sign-up/"
-                sx={{ minWidth: 200 }}
+                sx={{ minWidth: 200, height: 60}}
             >
                 search flights
             </Button>
