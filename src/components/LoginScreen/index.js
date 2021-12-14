@@ -1,10 +1,11 @@
 import NavBar from "../NavBar";
+import LoginComponent from "./LoginComponent";
 
 const LoginScreen = () => {
-    return(
+    return (
         <>
-            <NavBar/>
-            Login Screen
+            <NavBar page={'login'}/>
+            <LoginComponent/>
         </>
     )
 }

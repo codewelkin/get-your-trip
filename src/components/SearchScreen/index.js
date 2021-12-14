@@ -1,10 +1,11 @@
 import NavBar from "../NavBar";
+import SearchComponent from "./SearchComponent";
 
 const SearchScreen = () => {
     return(
       <>
-          <NavBar/>
-          Search Screen
+          <NavBar page={'search'}/>
+          <SearchComponent/>
       </>
     );
 }

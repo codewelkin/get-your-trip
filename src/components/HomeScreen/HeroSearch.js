@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import HeroLayout from './HeroLayout';
 import {Link as RouterLink} from "react-router-dom";
+import Link from "@mui/material/Link";
 
 const backgroundImage ='./images/airlineHero4.jpeg';
 
@@ -35,16 +36,30 @@ const HeroSearch = () => {
             <Button
                 component={RouterLink}
                 to='/search'
-                color="secondary"
+                color="primary"
                 variant="contained"
                 size="large"
-                href="/premium-themes/onepirate/sign-up/"
                 sx={{ minWidth: 200, height: 60}}
             >
                 search flights
             </Button>
             <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
                 Discover the experience
+            </Typography>
+            <Typography
+            sx={{position : 'absolute', bottom:12}}
+                variant="body2" color="inherit" align="center">
+                {'Copyright © '}
+                <Link color="inherit"
+                      component={RouterLink} to='/'>
+                    getyourtrip
+                </Link>{' '}
+                {new Date().getFullYear()}
+                {'  .  '}
+                <Link color="inherit"
+                      component={RouterLink} to='/privacy'>
+                    Privacy Policy
+                </Link>{' '}
             </Typography>
         </HeroLayout>
     );

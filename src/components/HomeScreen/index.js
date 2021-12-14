@@ -4,7 +4,7 @@ import HeroSearch from "./HeroSearch";
 const HomeScreen = () => {
     return (
         <>
-            <NavBar/>
+            <NavBar page={'home'}/>
             <HeroSearch/>
         </>
     )
