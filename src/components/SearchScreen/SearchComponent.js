@@ -2,23 +2,22 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import {
     CircularProgress,
-    FormControl, FormControlLabel, FormLabel,
+    FormControl, FormControlLabel,
     InputLabel,
     MenuItem, RadioGroup,
-    Select, Switch,
+    Select,
     TextField
 } from "@mui/material";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Button from "@mui/material/Button";
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import {fetchAllFlightOffers, getFlights, searchFlights} from "../../services/flightService";
+import {searchFlights} from "../../services/flightService";
 import {useDispatch, useSelector} from "react-redux";
 import List from "@mui/material/List";
 import SearchListItem from "./SearchListItem";
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import Radio from '@mui/material/Radio';
-import Typography from "@mui/material/Typography";
 
 const today = new Date();
 const tomorrow = new Date(today);
@@ -48,7 +47,9 @@ const SearchComponent = ({
     const dispatch = useDispatch();
     let flights = useSelector(getAllFlights);
     if (!flights || flights.length === 0) {
-        flights = !JSON.parse(localStorage.getItem("flights")) ? [] : JSON.parse(localStorage.getItem("flights"));
+        flights =
+            !JSON.parse(localStorage.getItem("flights")) ? [] : JSON.parse(
+                localStorage.getItem("flights"));
     }
     const [localSearchCriteria, setLocalSearchCriteria] = useState(searchCriteria)
     const [loader, setLoader] = useState(false)
@@ -276,7 +277,7 @@ const SearchComponent = ({
                     <Container>
                         <List>
                             {!!flights && flights.map(offer =>
-                                                          <SearchListItem offer={offer}
+                                                          <SearchListItem offer={offer} dispatch={dispatch}
                                                                           key={offer}/>
                             )}
                         </List>

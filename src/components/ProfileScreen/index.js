@@ -1,12 +1,13 @@
 import NavBar from "../NavBar";
-import BookingComponent from "../MyBookingScreen/BookingComponent";
+import ProfileComponent from "./ProfileComponent";
+import {useParams} from "react-router-dom";
 
 const ProfileScreen = () => {
+    const {id} = useParams();
     return(
         <>
             <NavBar page={'profile'} login={true}/>
-            Profile screen
-            <BookingComponent/>
+            <ProfileComponent id={id}/>
         </>
     );
 }

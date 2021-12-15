@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import {useState} from "react";
 import {API_URL} from "../../const";
+import {FormControl, RadioGroup} from "@mui/material";
+import Radio from "@mui/material/Radio";
 
 function Copyright(props) {
     return (
@@ -111,6 +113,24 @@ export default function SignUp() {
                                 autoComplete="new-password"
                             />
                         </Grid>
+                        <Box sx={{mt: 2, ml:3}}>
+                            <FormControl component="fieldset">
+                                <RadioGroup
+                                    row
+                                    aria-label="role"
+                                    name="row-radio-buttons-group"
+                                    value={user.role}
+                                    onChange={(e) => setUser({...user, role: e.target.value})}
+                                >
+                                    <FormControlLabel value="user" control={<Radio/>}
+                                                      label="User"/>
+                                    <FormControlLabel value="admin" control={<Radio/>}
+                                                      label="Admin"/>
+                                    <FormControlLabel value="agent" control={<Radio/>}
+                                                      label="Airline Agent"/>
+                                </RadioGroup>
+                            </FormControl>
+                        </Box>
                         <Grid item xs={12}>
                             <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="primary"/>}

@@ -8,6 +8,8 @@ import '../css/style.css'
 import {API_URL} from "../../const";
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
+import {IconButton} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 
 const rightLink = {
     fontSize: 15,
@@ -28,8 +30,8 @@ const NavBar = ({
             credentials: 'include'
         }).then(res => {
             dispatch({
-                type: 'get-offers-of-user',
-                offers : []
+                         type: 'get-offers-of-user',
+                         offers: []
                      })
             setLogin(false);
             navigate('/')
@@ -51,8 +53,9 @@ const NavBar = ({
     return (
         <div>
             <AppBar position="fixed" style={{
-                background: `${page === 'search' || page === 'flightDetails' ? 'white'
-                                                                             : 'transparent'}`,
+                background: `${page === 'search' || page === 'flightDetails' || page === 'feed'
+                               || page === 'profile' || page === 'userManagement' || page === 'privacy' ? 'white'
+                                                     : 'transparent'}`,
                 boxShadow: 'none'
             }}>
                 <Toolbar sx={{justifyContent: 'space-between', ml: 4, mr: 4}}>
@@ -74,7 +77,7 @@ const NavBar = ({
                         </Link>
                     </Box>
                     <Box sx={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
-                        {login === true && page !== 'booking' &&
+                        {page !== 'userManagement' && profile.role === 'admin' &&
                          <Link
                              component={RouterLink}
                              color="inherit"
@@ -84,7 +87,52 @@ const NavBar = ({
                                  ...rightLink,
                                  color: `${page === 'home' ? 'primary.light' : 'secondary.main'}`
                              }}
-                             to='/bookings'
+                             to='/user-management'
+                         >
+                             {'User Management'}
+                         </Link>
+                        }
+                        {page !== 'feed' &&
+                         <Link
+                             component={RouterLink}
+                             color="inherit"
+                             variant="h6"
+                             underline="none"
+                             sx={{
+                                 ...rightLink,
+                                 color: `${page === 'home' ? 'primary.light' : 'secondary.main'}`
+                             }}
+                             to='/feed'
+                         >
+                             {profile.role === 'agent' ? 'Update Bookings': 'Feed'}
+                         </Link>
+                        }
+                        {page !== 'search' &&
+                         <Link
+                             component={RouterLink}
+                             color="inherit"
+                             variant="h6"
+                             underline="none"
+                             sx={{
+                                 ...rightLink,
+                                 color: `${page === 'home' ? 'primary.light' : 'secondary.main'}`
+                             }}
+                             to='/search'
+                         >
+                             {'Search Flights'}
+                         </Link>
+                        }
+                        {login === true && page !== 'booking' && profile.role !== 'admin' && profile.role !=='agent' &&
+                         <Link
+                             component={RouterLink}
+                             color="inherit"
+                             variant="h6"
+                             underline="none"
+                             sx={{
+                                 ...rightLink,
+                                 color: `${page === 'home' ? 'primary.light' : 'secondary.main'}`
+                             }}
+                             to={`/bookings/${profile._id}`}
                          >
                              {'My Bookings'}
                          </Link>}
@@ -140,6 +188,18 @@ const NavBar = ({
                              {'Sign Up'}
                          </Link>}
                     </Box>
+                    {login &&
+                     <Link
+                         component={RouterLink}
+                         to="/profile"
+                     >
+                         <IconButton
+                             sx={{ml: 1}}
+                         >
+                             <Avatar alt="Remy Sharp" src={profile.image}/>
+                         </IconButton>
+                     </Link>
+                    }
                 </Toolbar>
             </AppBar>
             <Toolbar/>

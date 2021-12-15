@@ -5,20 +5,17 @@ import {CircularProgress, Fab, ListItemAvatar} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import SegmentComponent from "./SegmentComponent";
-import {Link as RouterLink, useNavigate} from 'react-router-dom';
-import Link from "@mui/material/Link";
+import {useNavigate} from 'react-router-dom';
 import {getFlightOffer} from "../../services/flightService";
-import {useDispatch} from "react-redux";
 import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import {API_URL} from "../../const";
 
-const SearchListItem = ({offer}) => {
+const SearchListItem = ({offer,dispatch}) => {
     const priceLabel = `${offer.price.total} ${offer.price.currency}`;
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loader, setLoader] = useState(false)
-
+    const [profile, setProfile] = useState('')
     const [login, setLogin] = useState(false)
 
     const fetchOffer = () => {
@@ -42,6 +39,7 @@ const SearchListItem = ({offer}) => {
         }).then(res => res.json())
             .then(user => {
                 setLogin(true);
+                setProfile(user);
             }).catch();
     }
 

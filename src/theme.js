@@ -66,7 +66,9 @@ const theme = {
     },
     h2: {
       ...rawTheme.typography.h2,
-      ...fontHeader,
+      color: rawTheme.palette.text.primary,
+      fontWeight: rawTheme.typography.fontWeightMedium,
+      fontFamily: "'Roboto Condensed', sans-serif",
       fontSize: 48,
     },
     h3: {
@@ -76,7 +78,6 @@ const theme = {
     },
     h4: {
       ...rawTheme.typography.h4,
-      ...fontHeader,
       fontSize: 36,
     },
     h5: {

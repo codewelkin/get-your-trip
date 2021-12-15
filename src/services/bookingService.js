@@ -17,3 +17,28 @@ export const fetchUserOffers = (dispatch, userId) => {
                      })
         )
 }
+
+export const fetchAllBookings = (dispatch) => {
+    fetch(`${API_URL}/bookings`)
+        .then(res=>res.json())
+        .then(bookings =>
+        dispatch({
+            type : "get-all-bookings",
+            bookings
+                 })
+        )
+}
+
+export const deleteBooking = (id, dispatch) => {
+    fetch(`${API_URL}/bookings/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+    })
+        .then(res=>res.json())
+        .then(status =>
+        dispatch({
+            type:'delete-booking',
+            id
+                 })
+        )
+}

@@ -66,3 +66,17 @@ export const updateFlightOffer = (dispatch, offer) => {
                                flight: offer
                            }))
 }
+
+export const deleteFlightOffer = (dispatch, id) =>{
+    fetch(`${API_URL}/flightOffers/${id}`,{
+        method: 'DELETE',
+        credentials: 'include'
+    })
+        .then(res=>res.json())
+        .then(status =>
+                  dispatch({
+                               type:'delete-offer',
+                               id
+                           })
+        )
+}

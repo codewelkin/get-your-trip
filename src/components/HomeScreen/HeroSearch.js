@@ -4,10 +4,19 @@ import Typography from '@mui/material/Typography';
 import HeroLayout from './HeroLayout';
 import {Link as RouterLink} from "react-router-dom";
 import Link from "@mui/material/Link";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
 
-const backgroundImage ='./images/airlineHero4.jpeg';
+const backgroundImage = './images/airlineHero4.jpeg';
 
 const HeroSearch = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch({
+                     type: 'set-flight-offers',
+                     flights: []
+                 });
+    })
     return (
         <HeroLayout
             sxBackground={{
@@ -18,7 +27,7 @@ const HeroSearch = () => {
         >
             {/* Increase the network loading priority of the background image. */}
             <img
-                style={{ display: 'none' }}
+                style={{display: 'none'}}
                 src={backgroundImage}
                 alt="increase priority"
             />
@@ -29,7 +38,7 @@ const HeroSearch = () => {
                 color="inherit"
                 align="center"
                 variant="h5"
-                sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
+                sx={{mb: 4, mt: {sx: 4, sm: 10}}}
             >
                 Enjoy secret offers up to 30% off on your first flight booking.
             </Typography>
@@ -39,15 +48,15 @@ const HeroSearch = () => {
                 color="primary"
                 variant="contained"
                 size="large"
-                sx={{ minWidth: 200, height: 60}}
+                sx={{minWidth: 200, height: 60}}
             >
                 search flights
             </Button>
-            <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
+            <Typography variant="body2" color="inherit" sx={{mt: 2}}>
                 Discover the experience
             </Typography>
             <Typography
-            sx={{position : 'absolute', bottom:12}}
+                sx={{position: 'absolute', bottom: 12}}
                 variant="body2" color="inherit" align="center">
                 {'Copyright © '}
                 <Link color="inherit"

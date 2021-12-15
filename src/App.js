@@ -17,8 +17,12 @@ import flights from "./reducers/flights";
 import PrivacyPolicyScreen from "./components/PrivacyPolicyScreen";
 import FlightDetailsScreen from "./components/FlightDetailsScreen";
 import offers from "./reducers/offers";
+import FeedScreen from "./components/FeedScreen";
+import bookings from "./reducers/bookings";
+import UserManagementScreen from "./components/UserManagementScreen";
+import profiles from "./reducers/profiles";
 
-const reducer = combineReducers({flights : flights, offers})
+const reducer = combineReducers({flights : flights, offers, bookings, profiles})
 const store = createStore(reducer);
 
 function App() {
@@ -32,11 +36,13 @@ function App() {
                         <Route path="/login" exact={true} element={<LoginScreen/>}/>
                         <Route path="/signup" exact={true} element={<SignupScreen/>}/>
                         <Route path="/search" exact={true} element={<SearchScreen/>}/>
-                        <Route path="/bookings" exact={true} element={<MyBookingScreen/>}/>
+                        <Route path="/bookings/:id" exact={true} element={<MyBookingScreen/>}/>
                         <Route path="/profile" exact={true} element={<ProfileScreen/>}/>
                         <Route path="/profile/:id" exact={true} element={<ProfileScreen/>}/>
                         <Route path="/privacy" exact={true} element={<PrivacyPolicyScreen/>}/>
                         <Route path="/details/:id" exact={true} element={<FlightDetailsScreen/>}/>
+                        <Route path="/feed" exact={true} element={<FeedScreen/>}/>
+                        <Route path="/user-management" exact={true} element={<UserManagementScreen/>}/>
                     </Routes>
                 </ThemeProvider>
             </BrowserRouter>

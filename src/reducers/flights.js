@@ -26,6 +26,10 @@ const flights = (state = initialState, action) => {
         case 'get-offer' :
             localStorage.setItem("flight", JSON.stringify(action.flight));
             return action.flight
+        case 'delete-offer':
+            const flightsAfterDelete = state.flights.filter(offer => offer._id !== action.id)
+            localStorage.setItem("flights", JSON.stringify(flightsAfterDelete))
+            return flightsAfterDelete
         default:
             return (state);
     }
