@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import FlightDetailsSegmentComponent from "./FlightDetailsSegmentComponent";
 import Container from "@mui/material/Container";
-import {Link as RouterLink} from "react-router-dom";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
 import {Fab} from "@mui/material";
 import Link from "@mui/material/Link";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -12,6 +12,7 @@ import {useEffect, useState} from "react";
 import {createBooking} from "../../services/bookingService";
 
 const FlightDetailsComponent = ({offerId}) => {
+    const navigate = useNavigate();
     const [profile, setProfile] = useState('')
     const getProfile = () => {
         fetch(`${API_URL}/profile`, {
@@ -25,6 +26,9 @@ const FlightDetailsComponent = ({offerId}) => {
 
     const bookFlightHandler = () => {
         createBooking(profile._id, offerId);
+        setTimeout(() => {
+            navigate(`/bookings/${profile._id}`);
+        },2000);
     }
 
     const flight = JSON.parse(localStorage.getItem("flight"));
